@@ -2,13 +2,18 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 
+// built-in middleware for json
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.json({ welcome: "Hello" });
-});
+// Routes
+const assignInstructorRoute = require("./routes/assignInstructor");
+app.use("/api/instructors", assignInstructorRoute);
 
-app.use("/instructors", require("./routes/assignInstructor"));
+const loginRoute = require("./routes/login.js");
+app.use("/api/login", loginRoute);
+
+const changelogRoute = require("./routes/changelog.js");
+app.use("/api/changelog", changelogRoute);
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

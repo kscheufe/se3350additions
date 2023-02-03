@@ -41,7 +41,8 @@ const updateData = () => {
   var obj = {
     instructors: [],
   };
-  for (let i = 0; i < instructors.length - 1; i++) {
+  console.log(instructors.length);
+  for (let i = 0; i < instructors.length; i++) {
     obj.instructors.push(instructors[i]);
   }
 
