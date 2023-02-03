@@ -53,12 +53,6 @@
             "ID": "9",
             "email": "michaelanderson@example.com",
             "assigned_courses": []
-        },
-        {
-            "name": "Emily Wilson",
-            "ID": "10",
-            "email": "emilywilson@example.com",
-            "assigned_courses": []
         }
     ]
 }
