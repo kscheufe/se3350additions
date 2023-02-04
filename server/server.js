@@ -6,14 +6,9 @@ const app = express();
 app.use(express.json());
 
 // Routes
-const assignInstructorRoute = require("./routes/assignInstructor");
-app.use("/api/instructors", assignInstructorRoute);
-
-const loginRoute = require("./routes/login.js");
-app.use("/api/login", loginRoute);
-
-const changelogRoute = require("./routes/changelog.js");
-app.use("/api/changelog", changelogRoute);
+app.use("/api/instructors", require("./routes/assignInstructor"));
+app.use("/api/login", require("./routes/login"));
+app.use("/api/changelog", require("./routes/changelog"));
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
