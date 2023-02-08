@@ -18,16 +18,23 @@ export default function Navbar() {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
+
+  const handleLogout = () => {
+		localStorage.removeItem("user");
+		window.location.replace('/');
+	};
   let user = false;
+  let isAdmin;
 
     const userToken = localStorage.getItem("user");
 
   if(userToken !== null) {
     const userProfile = JSON.parse(userToken);
-     let isAdmin = userProfile.isAdmin;
+     isAdmin = userProfile.isAdmin;
      user = true;
     
   } 
+  let allUser = isAdmin || user;
   
   return (
     <>
@@ -55,11 +62,25 @@ export default function Navbar() {
                     <span>Home</span>
                   </Link>
                 </li>
-                <li className="nav-text">
+                {!isAdmin && user && <li className="nav-text">
                   <Link to='/outline-view'>
                     <span>View Outlines</span>
                   </Link>
-                </li>
+                </li>}
+                {isAdmin && <li className="nav-text">
+                  <Link to='/admin-view'>
+                    <span>Assign Courses</span>
+                  </Link>
+                </li>}
+
+                {allUser && <li className="nav-text" onClick={handleLogout}>
+                  <Link to='/'>
+                    <span >Logout</span>
+                  </Link>
+                </li>}
+
+
+
           </ul>
         </nav>
       </IconContext.Provider>
