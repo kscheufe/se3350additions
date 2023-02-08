@@ -53,18 +53,24 @@ export default function Navbar() {
               </Link>
             </li>
                 {!user && <li className="nav-text">
+                  
                   <Link to='/login'>
+                    <AiIcons.AiOutlineLogin />
                     <span>Login</span>
                   </Link>
                 </li>}
                 <li className="nav-text">
                   <Link to='/'>
+                    <AiIcons.AiFillHome />
                     <span>Home</span>
                   </Link>
                 </li>
                 {!isAdmin && user && <li className="nav-text">
                   <Link to='/outline-view'>
+                    <AiIcons.AiOutlineFileSearch/>
                     <span>View Outlines</span>
+                    
+                    
                   </Link>
                 </li>}
                 {isAdmin && <li className="nav-text">
@@ -75,6 +81,7 @@ export default function Navbar() {
 
                 {allUser && <li className="nav-text" onClick={handleLogout}>
                   <Link to='/'>
+                  <AiIcons.AiOutlineLogout />
                     <span >Logout</span>
                   </Link>
                 </li>}
