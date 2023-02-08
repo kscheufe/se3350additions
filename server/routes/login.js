@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const Joi = require('joi');
 const User = require('../data/users.json')
 const users = User.users;
 
@@ -7,7 +6,7 @@ router.post('/', (req, res) => {
     try{
         let user;
         users.forEach(e => {
-            if(e.id == req.body.id){
+            if(e.id.toString() == req.body.id.toString()){
                 user = e;
             }
         })
@@ -20,7 +19,7 @@ router.post('/', (req, res) => {
 
         // send user data 
         res.status(200).send({
-            data:{ user}, message:"Logged in Succesfully" 
+            data:{user}, message:"Logged in Succesfully" 
         })
     }
     catch(err){
@@ -30,11 +29,5 @@ router.post('/', (req, res) => {
     }
 })
 
-const validate = (data) =>{
-    const schema = Joi.object({
-        id:Joi.string().id().required().label('ID'),
-    })
-    return schema.validate(data);
-}
 
 module.exports = router;

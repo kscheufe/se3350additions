@@ -1,72 +1,94 @@
 {
-    "courses": [
-        {
-            "id": 1,
-            "code": "ECE101",
-            "name": "Circuits and Systems",
-            "description": "An introduction to the analysis and design of electrical circuits and systems, including linear and nonlinear circuits, transient and steady-state response, and frequency domain analysis."
-        },
-        {
-            "id": 2,
-            "code": "ECE201",
-            "name": "Signals and Systems",
-            "description": "A study of continuous and discrete signals, system representation, and analysis techniques in the time and frequency domains."
-        },
-        {
-            "id": 3,
-            "code": "ECE301",
-            "name": "Electromagnetics",
-            "description": "An introduction to the theory and applications of electromagnetism, including Maxwell's equations, wave propagation, and electromagnetic devices."
-        },
-        {
-            "id": 4,
-            "code": "ECE401",
-            "name": "Control Systems",
-            "description": "A study of control system design, including feedback control, stability analysis, and state-space representations."
-        },
-        {
-            "id": 5,
-            "code": "ECE501",
-            "name": "Digital Systems",
-            "description": "An introduction to digital systems design, including combinatorial and sequential circuits, memory elements, and state machines."
-        },
-        {
-            "id": 6,
-            "code": "ECE102",
-            "name": "Electronic Devices and Circuits",
-            "description": "A study of electronic devices and their application in electrical circuits, including diodes, bipolar junction transistors, and field-effect transistors."
-        },
-        {
-            "id": 7,
-            "code": "ECE202",
-            "name": "Communication Systems",
-            "description": "An introduction to the design and analysis of communication systems, including analog and digital communication, modulation and demodulation, and error correction coding."
-        },
-        {
-            "id": 8,
-            "code": "ECE302",
-            "name": "Power Systems",
-            "description": "A study of power system analysis and design, including power flow, fault analysis, and stability."
-        },
-        {
-            "id": 9,
-            "code": "ECE402",
-            "name": "Computer Architecture",
-            "description": "An introduction to computer architecture, including instruction sets, computer arithmetic, and memory hierarchy."
-        },
-        {
-            "id": 10,
-            "code": "ECE502",
-            "name": "VLSI Design",
-            "description": "A study of very-large-scale integration (VLSI) design, including CMOS design, digital integrated circuit design, and computer-aided design (CAD) tools."
-        },
-        {
-            "id": 11,
-            "code": "ECE103",
-            "name": "Analog and Digital Signal Processing",
-            "description": "A study of signal processing techniques, including filtering, transformation, and spectral analysis for both analog and digital signals."
-        },
-        {
-            "id": 12,
-            "code": "ECE203",
-            "name": "Optical Communications",
+  "courses": [
+    {
+      "id": 1,
+      "code": "ECE101",
+      "name": "Circuits and Systems",
+      "description": "An introduction to the analysis and design of electrical circuits and systems, including linear and nonlinear circuits, transient and steady-state response, and frequency domain analysis."
+    },
+    {
+      "id": 2,
+      "code": "ECE201",
+      "name": "Signals and Systems",
+      "description": "A study of continuous and discrete signals, system representation, and analysis techniques in the time and frequency domains."
+    },
+    {
+      "id": 3,
+      "code": "ECE301",
+      "name": "Electromagnetics",
+      "description": "An introduction to the theory and applications of electromagnetism, including Maxwell's equations, wave propagation, and electromagnetic devices."
+    },
+    {
+      "id": 4,
+      "code": "ECE401",
+      "name": "Control Systems",
+      "description": "A study of control system design, including feedback control, stability analysis, and state-space representations."
+    },
+    {
+      "id": 5,
+      "code": "ECE501",
+      "name": "Digital Systems",
+      "description": "An introduction to digital systems design, including combinatorial and sequential circuits, memory elements, and state machines."
+    },
+    {
+      "id": 6,
+      "code": "ECE102",
+      "name": "Electronic Devices and Circuits",
+      "description": "A study of electronic devices and their application in electrical circuits, including diodes, bipolar junction transistors, and field-effect transistors."
+    },
+    {
+      "id": 7,
+      "code": "ECE202",
+      "name": "Communication Systems",
+      "description": "An introduction to the design and analysis of communication systems, including analog and digital communication, modulation and demodulation, and error correction coding."
+    },
+    {
+      "id": 8,
+      "code": "ECE302",
+      "name": "Power Systems",
+      "description": "A study of power system analysis and design, including power flow, fault analysis, and stability."
+    },
+    {
+      "id": 9,
+      "code": "ECE402",
+      "name": "Computer Architecture",
+      "description": "An introduction to computer architecture, including instruction sets, computer arithmetic, and memory hierarchy."
+    },
+    {
+      "id": 10,
+      "code": "ECE502",
+      "name": "VLSI Design",
+      "description": "A study of very-large-scale integration (VLSI) design, including CMOS design, digital integrated circuit design, and computer-aided design (CAD) tools."
+    },
+    {
+      "id": 11,
+      "code": "ECE103",
+      "name": "Analog and Digital Signal Processing",
+      "description": "A study of signal processing techniques, including filtering, transformation, and spectral analysis for both analog and digital signals."
+    },
+    {
+      "id": 12,
+      "code": "ECE203",
+      "name": "Optical Communications",
+      "description": "A study of optical communication systems, including fiber optic transmission, wavelength division multiplexing, and optical network design."
+    },
+    {
+      "id": 13,
+      "code": "ECE303",
+      "name": "Renewable Energy Systems",
+      "description": "An introduction to renewable energy systems, including solar photovoltaics, wind energy, and hydropower."
+    },
+    {
+      "id": 14,
+      "code": "ECE403",
+      "name": "Embedded Systems",
+      "description": "A study of embedded systems design, including microcontroller programming, real-time systems, and interfacing with sensors and actuators."
+    },
+    {
+      "id": 15,
+      "code": "ECE503",
+      "name": "Antennas and Propagation",
+      "description": "A study of antennas and their behavior in different environments, including wave propagation, antenna types, and antenna arrays."
+    }
+  ]
+}

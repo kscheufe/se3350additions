@@ -4,6 +4,8 @@ const app = express();
 
 // built-in middleware for json
 app.use(express.json());
+const cors = require('cors');
+app.use(cors());
 
 // Routes
 app.use("/api/instructors", require("./routes/assignInstructor"));

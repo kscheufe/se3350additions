@@ -3,11 +3,15 @@ import '../App.css'
 import {Link} from 'react-router-dom';
 
 const OutlineView = () => {
+    const handleLogout = () => {
+		localStorage.removeItem("user");
+		window.location.replace('/');
+	};
 
     return(
         <div className = "App">
             View Course Outlines Here
-            <Link to='/'><button>Logout</button></Link>
+            <button onClick={handleLogout}>Logout</button>
         </div>
     )
 }
