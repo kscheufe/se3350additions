@@ -12,6 +12,7 @@ app.use("/api/instructors", require("./routes/assignInstructor"));
 app.use("/api/login", require("./routes/login"));
 app.use("/api/changelog", require("./routes/changelog"));
 app.use("/api/courses", require("./routes/getCourses"));
+app.use("/api/getinstructors", require("./routes/getInstructors"));
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
