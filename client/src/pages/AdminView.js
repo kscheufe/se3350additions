@@ -30,6 +30,25 @@ const AdminView = () => {
     setSelectedInstructor(selectedInstructor || {});
   };
 
+  const assignCourseToInstructor = async () => {
+    console.log(selectedCourse.code);
+    console.log(selectedInstructor.ID);
+    if (selectedInstructor.ID && selectedCourse.code) {
+      const response = await fetch(`http://localhost:5000/api/instructors/${selectedInstructor.ID}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ course: selectedCourse.code }),
+      });
+      if (response.ok) {
+        alert("The course was assigned to the instructor successfully");
+      } else {
+        alert("An error occurred while assigning the course to the instructor");
+      }
+    }
+  };
+
   return (
     <div>
       <h2>Select a Course:</h2>
@@ -51,20 +70,23 @@ const AdminView = () => {
       {selectedInstructor.name ? (
         <div>
           <h2>Selected Instructor:</h2>
+          <p>ID: {selectedInstructor.ID}</p>
           <p>Name: {selectedInstructor.name}</p>
           <p>Email: {selectedInstructor.email}</p>
-          <p>Specialty: {selectedInstructor.specialty}</p>
+          <p>Assigned Courses: {selectedInstructor.assigned_courses}</p>
         </div>
       ) : null}
       {selectedCourse.name ? (
         <div>
           <h2>Selected Course:</h2>
+          <p>Code: {selectedCourse.code}</p>
           <p>Name: {selectedCourse.name}</p>
           <p>Description: {selectedCourse.description}</p>
-          <p>Instructor: {selectedCourse.instructor}</p>
-          <p>Duration: {selectedCourse.duration}</p>
         </div>
       ) : null}
+      <br />
+      <br />
+      <button onClick={assignCourseToInstructor}>Assign Course to Instructor</button>
     </div>
   );
 };
