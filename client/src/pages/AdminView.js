@@ -2,41 +2,32 @@ import React, { useState, useEffect } from "react";
 
 const AdminView = () => {
   const [courses, setCourses] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState("");
 
-  const handleSubmit = async () => {
-    // fetch the API request
-    try {
-      const response = await fetch(`http://localhost:5000/api/courses`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json " },
-      });
-
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const response = await fetch("http://localhost:5000/api/courses");
       const data = await response.json();
+      setCourses(data);
+    };
 
-      // redirect user to landing page
-      if (response.status === 200) {
-        console.log("Success");
-        console.log(data);
-      }
+    fetchCourses();
+  }, []);
 
-      if (response.status === 400) {
-        console.log("Error 400");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  const handleChange = (event) => {
+    setSelectedCourse(event.target.value);
   };
-
-  handleSubmit();
 
   return (
     <div>
-      {courses.map((course) => (
-        <div key={course.id}>
-          <h3>{course.name}</h3>
-          <p>{course.description}</p>
-        </div>
-      ))}
+      <h2>Select a Course:</h2>
+      <select value={selectedCourse} onChange={handleChange}>
+        {courses.map((course) => (
+          <option key={course} value={course}>
+            {course}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };

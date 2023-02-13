@@ -8,7 +8,8 @@ const getCourseCodes = (req, res) => {
   let courseCodes = [];
 
   for (let i = 0; i < courses.length; i++) {
-    courseCodes.push(courses[i].code);
+    let courseString = courses[i].name + " " + courses[i].code;
+    courseCodes.push(courseString);
   }
 
   console.log(courses.length);
