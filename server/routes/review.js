@@ -5,7 +5,7 @@ const ReviewArray = Reviews.reviews;
 
 
 
-let reviewArr = []
+let reviewArr = [];
 
 
 router.post('/add-review', (req, res)=>{
@@ -36,9 +36,19 @@ router.get('/get-review', (req, res) => {
 
 // Function to update the JSON file with data
 const updateData = (data) => {
+  let reviewObj = {
+    review:[]
+  }
+
+  reviewArr.forEach(e=>{
+    reviewObj.review.push(e)
+  })
    
 // Convert the data array to a JSON string
 const dataJson = JSON.stringify(data);
+
+const readData = fs.readFileSync('./data/review.json')
+const reviewArr = readData['re']
 
 // Write the JSON string to a file
 fs.writeFile('./data/review.json', dataJson, 'utf8', (err) => {
