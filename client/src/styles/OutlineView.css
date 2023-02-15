@@ -1,5 +1,14 @@
 .content{
-    display:flex;
-    justify-content:center;
+    margin: 2vh 10vw 2vh 10vw;
+
 }
 
+.courses-grid{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
