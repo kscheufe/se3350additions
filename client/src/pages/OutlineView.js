@@ -1,14 +1,15 @@
 import React from 'react';
-import '../App.css'
-import {Link} from 'react-router-dom';
+import Navbar from '../components/Navbar/Navbar';
 
 const OutlineView = () => {
 
     return(
-        <div className = "App">
-            View Course Outlines Here
-            <button>Logout</button>
+        <>
+        <Navbar/>
+        <div>
+            <h1>View and Edit Course Outline Here</h1>
         </div>
+        </>
     )
 }
 
