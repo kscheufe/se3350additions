@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 
 // ICONS
 import * as FaIcons from "react-icons/fa"; //Now i get access to all the icons
 import * as AiIcons from "react-icons/ai";
+import * as TbIcons from "react-icons/tb"
 
 import { IconContext } from "react-icons";
 
@@ -21,7 +22,6 @@ export default function Navbar() {
 
   const handleLogout = () => {
 		localStorage.removeItem("user");
-		window.location.replace('/');
 	};
   let user = false;
   let isAdmin;
@@ -35,10 +35,13 @@ export default function Navbar() {
     
   } 
   let allUser = isAdmin || user;
+  let instructor = (!isAdmin && user)
+  
+  const iconColor = useMemo(()=>({color:"#FFF"}), [])
   
   return (
     <>
-      <IconContext.Provider value={{ color: "#FFF" }}>
+      <IconContext.Provider value={iconColor}>
         {/* All the icons now are white */}
         <div className="navbar">
           <Link to="#" className="menu-bars">
@@ -53,28 +56,34 @@ export default function Navbar() {
               </Link>
             </li>
                 {!user && <li className="nav-text">
+                  
                   <Link to='/login'>
+                    <AiIcons.AiOutlineLogin />
                     <span>Login</span>
                   </Link>
                 </li>}
                 <li className="nav-text">
                   <Link to='/'>
+                    <AiIcons.AiFillHome />
                     <span>Home</span>
                   </Link>
                 </li>
-                {!isAdmin && user && <li className="nav-text">
+                {instructor && <li className="nav-text">
                   <Link to='/outline-view'>
+                    <AiIcons.AiOutlineFileSearch/>
                     <span>View Outlines</span>
                   </Link>
                 </li>}
                 {isAdmin && <li className="nav-text">
                   <Link to='/admin-view'>
+                    <TbIcons.TbBookUpload/>
                     <span>Assign Courses</span>
                   </Link>
                 </li>}
 
                 {allUser && <li className="nav-text" onClick={handleLogout}>
                   <Link to='/'>
+                  <AiIcons.AiOutlineLogout />
                     <span >Logout</span>
                   </Link>
                 </li>}

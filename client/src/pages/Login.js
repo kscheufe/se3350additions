@@ -28,8 +28,6 @@ const Login = () => {
                 localStorage.setItem("user", JSON.stringify(data.data.user))
                 window.location = "/";
             }
-            
-
             if (response.status === 400) {
 				setError(data.message);
 			}
