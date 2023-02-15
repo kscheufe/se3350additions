@@ -34,9 +34,9 @@ const AdminView = () => {
 
   const assignCourseToInstructor = async () => {
     console.log(selectedCourse.code);
-    console.log(selectedInstructor.ID);
-    if (selectedInstructor.ID && selectedCourse.code) {
-      const response = await fetch(`http://localhost:5000/api/instructors/${selectedInstructor.ID}`, {
+    console.log(selectedInstructor.id);
+    if (selectedInstructor.id && selectedCourse.code) {
+      const response = await fetch(`http://localhost:5000/api/instructors/${selectedInstructor.id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -85,7 +85,7 @@ const AdminView = () => {
           {selectedInstructor.name ? (
             <div className="instructor-info">
               <h2>Selected Instructor:</h2>
-              <p>ID: {selectedInstructor.ID}</p>
+              <p>ID: {selectedInstructor.id}</p>
               <p>Name: {selectedInstructor.name}</p>
               <p>Email: {selectedInstructor.email}</p>
               <p>Assigned Courses: {selectedInstructor.assigned_courses}</p>

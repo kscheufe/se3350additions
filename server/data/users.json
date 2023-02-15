@@ -1,86 +1,17 @@
-{ 
-    "users":[
-    {
-    "name": "Alex Green",
-      "id": 10,
-      "email": "alex.green@example.com",
-      "isAdmin":true
-    },
-  
-    {
-      "name": "Sophie Kim",
-      "id": 11,
-      "email": "sophie.kim@example.com",
-      "isAdmin":true
-    }
-  ,
-    {
-      "name": "Emily Wilson",
-      "id": 12,
-      "email": "emily.wilson@example.com",
-      "isAdmin":true
-    }
-  ,
-    {
-      "name": "Michael Scott",
-      "id": 13,
-      "email": "michael.scott@example.com",
-      "isAdmin":true 
-  },
-  {
-    "name": "John Doe",
-    "id": 1,
-    "email": "johndoe@example.com",
-    "isAdmin": false
-},
 {
-    "name": "Jane Doe",
-    "id": 2,
-    "email": "janedoe@example.com",
-    "isAdmin": false
-},
-{
-    "name": "Jim Smith",
-    "id": 3,
-    "email": "jimsmith@example.com",
-    "isAdmin": false
-},
-{
-    "name": "Sarah Johnson",
-    "id": 4,
-    "email": "sarahjohnson@example.com",
-    "isAdmin": false
-},
-{
-    "name": "Mike Brown",
-    "id": 5,
-    "email": "mikebrown@example.com",
-    "isAdmin": false
-},
-{
-    "name": "Emily Davis",
-    "id": 6,
-    "email": "emilydavis@example.com",
-    "isAdmin": false
-},
-{
-    "name": "William Thompson",
-    "id": 7,
-    "email": "williamthompson@example.com",
-    "isAdmin": false
-},
-{
-    "name": "Ashley Smith",
-    "id": 8,
-    "email": "ashleysmith@example.com",
-    "isAdmin": false
-},
-{
-    "name": "Michael Anderson",
-    "id": 9,
-    "email": "michaelanderson@example.com",
-    "isAdmin": false
+  "users": [
+    { "name": "Alex Green", "id": 10, "email": "alex.green@example.com", "isAdmin": true, "assigned_courses": [] },
+    { "name": "Sophie Kim", "id": 11, "email": "sophie.kim@example.com", "isAdmin": true, "assigned_courses": [] },
+    { "name": "Emily Wilson", "id": 12, "email": "emily.wilson@example.com", "isAdmin": true, "assigned_courses": [] },
+    { "name": "Michael Scott", "id": 13, "email": "michael.scott@example.com", "isAdmin": true, "assigned_courses": [] },
+    { "name": "John Doe", "id": 1, "email": "johndoe@example.com", "isAdmin": false, "assigned_courses": [] },
+    { "name": "Jane Doe", "id": 2, "email": "janedoe@example.com", "isAdmin": false, "assigned_courses": [] },
+    { "name": "Jim Smith", "id": 3, "email": "jimsmith@example.com", "isAdmin": false, "assigned_courses": [] },
+    { "name": "Sarah Johnson", "id": 4, "email": "sarahjohnson@example.com", "isAdmin": false, "assigned_courses": [] },
+    { "name": "Mike Brown", "id": 5, "email": "mikebrown@example.com", "isAdmin": false, "assigned_courses": [] },
+    { "name": "Emily Davis", "id": 6, "email": "emilydavis@example.com", "isAdmin": false, "assigned_courses": [] },
+    { "name": "William Thompson", "id": 7, "email": "williamthompson@example.com", "isAdmin": false, "assigned_courses": [] },
+    { "name": "Ashley Smith", "id": 8, "email": "ashleysmith@example.com", "isAdmin": false, "assigned_courses": [] },
+    { "name": "Michael Anderson", "id": 9, "email": "michaelanderson@example.com", "isAdmin": false, "assigned_courses": [] }
+  ]
 }
-]}
-     
-  
