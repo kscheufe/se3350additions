@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const fs = require('fs');
-const Reviews = require('../data/review.json')
-const ReviewArray = Reviews.reviews;
+const Reviews = require('../models/ReviewModel');
+
 
 
 
@@ -24,10 +24,10 @@ router.post('/add-review', (req, res)=>{
     }
 })
 
-router.get('/get-review', (req, res) => {
+router.get('/get-review',async (req, res) => {
     try{
-        res.json(ReviewArray);
-        
+        const reviews = await Reviews.find()
+        res.json(reviews);
     }
     catch(err){
         res.status(500).json({message: err.message});
