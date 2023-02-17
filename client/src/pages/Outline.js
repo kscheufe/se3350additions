@@ -1,17 +1,15 @@
-import React from 'react';
-import '../App.css'
-import React , {useState} from 'react';
+import "../App.css";
+import {DocumentEditorContainerComponent, Toolbar, Inject} from '@syncfusion/ej2-react-documenteditor'
+import React from "react";
 
-
-const Outline = ({outline, setCurrentId}) => {
-    
-
-    return(
-        <div>
-            <h1>Outline1</h1>
-            
+function Outline() {
+    return (
+        <div className="App">
+            <DocumentEditorContainerComponent height='590' enableToolbar={true}></DocumentEditorContainerComponent>
+            <Inject services={[Toolbar]}></Inject>
         </div>
-    )
+    );
+
 }
 
 export default Outline;
