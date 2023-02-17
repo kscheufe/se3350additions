@@ -17,12 +17,12 @@ db.on('error',(error=>{
 db.once('open',()=> console.log('Connected to Database'))
 
 // Routes
-app.use("/api/instructors", require("./routes/assignInstructor"));
-app.use("/api/login", require("./routes/login"));
+// app.use("/api/instructors", require("./routes/assignInstructor"));
+// app.use("/api/login", require("./routes/login"));
 app.use("/api/changelog", require("./routes/changelog"));
-app.use("/api/courses", require("./routes/getCourses"));
-app.use("/api/getinstructors", require("./routes/getInstructors"));
-app.use("/api/review", require("./routes/review"))
+// app.use("/api/courses", require("./routes/getCourses"));
+// app.use("/api/getinstructors", require("./routes/getInstructors"));
+// app.use("/api/review", require("./routes/review"))
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
