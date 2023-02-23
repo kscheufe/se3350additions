@@ -1,14 +1,27 @@
 .content{
-    margin: 2vh 10vw 2vh 10vw;
-
+    text-align: center;
+}
+h1{
+    text-align: center;
 }
 
-.courses-grid{
-    height: 100%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
-}
+.courses-flex {
+    display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  }
+  
+  .courses-item {
+    background-color: #f1f1f1;
+    padding: 20px;
+    width: calc(33.33% - 5vw);
+    margin: 2vh 3vw 2vh 3vw;
+    border-radius: 5px;
+  }
+
+  .courses-flex :hover{
+    background-color: rgb(203, 201, 201);
+    cursor: pointer;
+  }
+
