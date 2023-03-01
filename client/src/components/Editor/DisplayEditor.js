@@ -1,6 +1,7 @@
 import React from "react";
-import Navbar from "./Navbar";
+import Navbar from "../Navbar/Navbar";
 import { useParams } from "react-router-dom";
+import OutlineEditor from '../../pages/Outline'
 
 function DisplayEditor({courses}) {
   let params = useParams();
@@ -8,7 +9,7 @@ function DisplayEditor({courses}) {
   //function to match params id to courses array
   courses.forEach(course =>{
     if(params.id === course){
-        console.log(course)
+        //console.log(course)
     }
   })
 
@@ -16,6 +17,7 @@ function DisplayEditor({courses}) {
     <div>
         <Navbar/>
       <h1>Edit {params.id} outline</h1>
+      <OutlineEditor/>
     </div>
   );
 }
