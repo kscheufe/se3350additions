@@ -3,6 +3,7 @@ import React from 'react';
 import '../styles/Home.css'
 import Navbar from '../components/Navbar/Navbar';
 
+
 const Home = () =>{
     return(
         <div>

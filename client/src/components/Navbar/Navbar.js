@@ -26,11 +26,12 @@ export default function Navbar() {
   let user = false;
   let isAdmin;
 
-    const userToken = localStorage.getItem("user");
+  const userToken = localStorage.getItem("user");
 
   if(userToken !== null) {
     const userProfile = JSON.parse(userToken);
-     isAdmin = userProfile.isAdmin;
+     isAdmin = userProfile[0].isAdmin;
+     console.log(isAdmin);
      user = true;
     
   } 

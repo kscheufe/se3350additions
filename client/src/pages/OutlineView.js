@@ -3,13 +3,11 @@ import Navbar from '../components/Navbar/Navbar';
 import '../styles/OutlineView.css'
 import {Link, Outlet, useParams} from 'react-router-dom';
 
-
-
 const OutlineView = ({courses}) => {
     let params = useParams();
-    const length = Object.keys(params).length;
+    const objLength = Object.keys(params).length;
     let outlineView;
-    if(length === 0){
+    if(objLength === 0){
         outlineView = true;
     }
     else{
@@ -17,7 +15,7 @@ const OutlineView = ({courses}) => {
     }
 
         //if no courses have been assigned it will display a message
-        let assigned = courses.length > 0;
+        const assigned = courses.length > 0;
     return(
         <div>
             {outlineView && <>
