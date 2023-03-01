@@ -17,7 +17,10 @@ function DisplayEditor({courses}) {
     <div>
         <Navbar/>
       <h1>Edit {params.id} outline</h1>
-      <OutlineEditor/>
+      <div className = "editor">
+        <OutlineEditor/>
+      </div>
+      
     </div>
   );
 }

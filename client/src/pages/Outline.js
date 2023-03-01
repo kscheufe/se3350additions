@@ -2,7 +2,7 @@ import '../index.css';
 import * as React from 'react';
 import { updateSampleSection } from '../components/sample-base';
 import { DocumentEditorContainerComponent, Toolbar } from '@syncfusion/ej2-react-documenteditor';
-import { TitleBar } from '../components/title-bar';
+//import { TitleBar } from '../components/title-bar';
 
 DocumentEditorContainerComponent.Inject(Toolbar);
 // tslint:disable:max-line-length
@@ -13,7 +13,7 @@ function Outline() {
     }, []);
     let hostUrl = 'https://ej2services.syncfusion.com/production/web-services/';
     let container;
-    let titleBar;
+    //let titleBar;
     function rendereComplete() {
         window.onbeforeunload = function () {
             return 'Want to save your changes?';
@@ -22,14 +22,14 @@ function Outline() {
         container.documentEditor.pageOutline = '#E0E0E0';
         container.documentEditor.acceptTab = true;
         container.documentEditor.resize();
-        titleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);
+        //titleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);
         onLoadDefault();
     }
     return (<div className='control-pane'>
         <div className='control-section'>
-            <div id='documenteditor_titlebar' className="e-de-ctn-title"></div>
+            {/* <div id='documenteditor_titlebar' className="e-de-ctn-title"></div> */}
             <div id="documenteditor_container_body">
-                <DocumentEditorContainerComponent id="container" ref={(scope) => { container = scope; }} style={{ 'display': 'block' }} height={'590px'} enableToolbar={true} locale='en-US'/>
+                <DocumentEditorContainerComponent id="container" ref={(scope) => { container = scope; }} style={{ 'display': 'flex','margin-left':'15vw' }} height={'790px'} width = {'70vw'} enableToolbar={true} locale='en-US'/>
             </div>
         </div>
     </div>);
@@ -39,9 +39,9 @@ function Outline() {
         // tslint:enable        
         container.documentEditor.open(JSON.stringify(defaultDocument));
         container.documentEditor.documentName = 'Course Outline Template';
-        titleBar.updateDocumentTitle();
+        //titleBar.updateDocumentTitle();
         container.documentChange = () => {
-            titleBar.updateDocumentTitle();
+            //titleBar.updateDocumentTitle();
             container.documentEditor.focusIn();
         };
     }
