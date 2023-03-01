@@ -1,5 +1,27 @@
 .content{
-    display:flex;
-    justify-content:center;
+    text-align: center;
 }
+h1{
+    text-align: center;
+}
+
+.courses-flex {
+    display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  }
+  
+  .courses-item {
+    background-color: #f1f1f1;
+    padding: 20px;
+    width: calc(33.33% - 5vw);
+    margin: 2vh 3vw 2vh 3vw;
+    border-radius: 5px;
+  }
+
+  .courses-flex :hover{
+    background-color: rgb(203, 201, 201);
+    cursor: pointer;
+  }
 

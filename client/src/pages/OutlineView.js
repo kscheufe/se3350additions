@@ -1,26 +1,42 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import '../styles/OutlineView.css'
+import {Link, Outlet, useParams} from 'react-router-dom';
 
-const OutlineView = () => {
-    const[courses,setCourses] = useState([])
 
-useEffect(() =>{
-    const fetchData = async() =>{
-        const courseResponse = await fetch("http://localhost:5000/api/courses");
-        const courseData = await courseResponse.json();
-        setCourses(courseData);
+
+const OutlineView = ({courses}) => {
+    let params = useParams();
+    const length = Object.keys(params).length;
+    let outlineView;
+    if(length === 0){
+        outlineView = true;
     }
-})
+    else{
+        outlineView = false;
+    }
 
+        //if no courses have been assigned it will display a message
+        let assigned = courses.length > 0;
     return(
         <div>
+            {outlineView && <>
             <Navbar/>
-        <div className="content"> 
-            <div>
-                <h1>View and Edit Course Outline Here</h1>
+            <h1>View and Edit Course Outline Here</h1>
+            <div className = "courses-flex">
+                        {assigned ? courses.map((course, index)=>(
+                                    <div key = {index}  className = "courses-item">
+                                        <Link to = {`/outline-view/${course}`} >
+                                            <h2>{course}</h2>
+                                            <p>Navigate to Outline Editor</p>
+                                        </Link>
+                                    </div>
+                                    
+                            )): <h2>You have not yet been assigned a course</h2>}
             </div>
-        </div>
+            </>}
+            
+            {!outlineView && <Outlet/> }
         </div>
     )
 }

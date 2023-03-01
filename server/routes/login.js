@@ -1,17 +1,11 @@
 const router = require('express').Router();
-const User = require('../data/users.json')
-const users = User.users;
+const User = require('../models/User')
 
-router.post('/', (req, res) => {
+router.post('/', async(req, res) => {
     try{
-        let user;
-        users.forEach(e => {
-            if(e.id.toString() == req.body.id.toString()){
-                user = e;
-            }
-        })
+        const user = await User.find({id:req.body.id}) 
 
-        if(!user){
+        if(user.length === 0){
             return res.status(400).send({
                 message:"Invalid ID"
             })
