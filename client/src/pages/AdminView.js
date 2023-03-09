@@ -10,11 +10,11 @@ const AdminView = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const courseResponse = await fetch("http://localhost:5000/api/courses");
+      const courseResponse = await fetch(process.env.REACT_APP_API_ADDRESS + "/api/courses");
       const courseData = await courseResponse.json();
       setCourses(courseData);
 
-      const instructorResponse = await fetch("http://localhost:5000/api/getinstructors");
+      const instructorResponse = await fetch(process.env.REACT_APP_API_ADDRESS + "/api/getinstructors");
       const instructorData = await instructorResponse.json();
       setInstructors(instructorData);
     };
@@ -36,7 +36,7 @@ const AdminView = () => {
     console.log(selectedCourse.code);
     console.log(selectedInstructor.id);
     if (selectedInstructor.id && selectedCourse.code) {
-      const response = await fetch(`http://localhost:5000/api/instructors/${selectedInstructor.id}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_ADDRESS}/api/instructors/${selectedInstructor.id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
