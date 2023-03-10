@@ -20,7 +20,7 @@ const OutlineView = ({ courses }) => {
       {outlineView && (
         <>
           <Navbar className="navbar-admin" />
-          <div className="div-structure">
+          <div className="div-struct">
             <h1>View and Edit Course Outline Here</h1>
             <div className="courses-flex">
               {assigned ? (

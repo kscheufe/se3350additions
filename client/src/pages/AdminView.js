@@ -56,6 +56,7 @@ const AdminView = () => {
       <div className="navbar-admin">
         <Navbar />
       </div>
+      <h1>Assign Courses to Instructor</h1>
       <div className="div-selection">
         <div className="instructor-selection">
           <h2>Select an Instructor:</h2>

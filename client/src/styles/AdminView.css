@@ -16,14 +16,14 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  text-align: center;
+  /* text-align: center; */
   background-color: #f1f1f1;
   padding-top: 30px;
   padding-bottom: 30px;
   padding-left: 60px;
   padding-right: 60px;
   width: 80%;
-  text-align: center;
+  /* text-align: center; */
   margin-bottom: 30px;
 }
 
@@ -56,27 +56,29 @@ select {
 }
 
 button {
-  background-color: #c36b84;
-  color: white;
+  display: inline-block;
   padding: 10px 20px;
-  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #0066cc;
+  color: #fff;
   border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
 }
 
 .course-selection {
   display: flex;
   align-items: center;
   border-radius: 5px;
-  background-color: #febb75;
+  background-color: #ebd559;
 }
 
 .instructor-selection {
   display: flex;
   align-items: center;
   border-radius: 5px;
-  background-color: #febb75;
+  background-color: #ebd559;
 }
 
 .instructor-selection select {
@@ -89,7 +91,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  /* text-align: center; */
   width: 100%;
 }
 
@@ -110,16 +112,23 @@ button {
   padding: 20px;
   padding-top: 0;
   padding-bottom: 0;
+  text-align: center;
 }
 
 .instructor-info {
   width: 30%;
   background-color: #fb948f;
+  padding: 50px;
+  padding-top: 0px;
+  padding-bottom: 20px;
 }
 
 .course-info {
   width: 60%;
   background-color: #fb948f;
+  padding: 50px;
+  padding-top: 0px;
+  padding-bottom: 20px;
 }
 
 @media (max-width: 1200px) {
