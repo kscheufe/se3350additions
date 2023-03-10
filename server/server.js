@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/api/instructors", require("./routes/assignInstructor"));
-// app.use("/api/login", require("./routes/login"));
+app.use("/api/login", require("./routes/login"));
 app.use("/api/changelog", require("./routes/changelog"));
 app.use("/api/courses", require("./routes/getCourses"));
 app.use("/api/getinstructors", require("./routes/getInstructors"));
