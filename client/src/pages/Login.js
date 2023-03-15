@@ -16,7 +16,7 @@ const Login = () => {
     e.preventDefault();
     // fetch the API request
     try {
-      alert(`${process.env.REACT_APP_API_ADDRESS}/api/login`);
+      //alert(`${process.env.REACT_APP_API_ADDRESS}/api/login`);
 
       const response = await fetch(`${process.env.REACT_APP_API_ADDRESS}/api/login`, {
         method: "POST",
