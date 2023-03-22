@@ -29,7 +29,16 @@ function Outline() {
     <div>
         <div style={{float: 'left'}}>
             GA Indicators Assessment Window
-            
+            <button style = {{display: 'block'}}>ET</button>
+            <button style = {{display: 'block'}}>ITW</button>
+            <button style = {{display: 'block'}}>CS</button>
+            <button style = {{display: 'block'}}>PR</button>
+            <button style = {{display: 'block'}}>IESE</button>
+            <button style = {{display: 'block'}}>EE</button>
+            <button style = {{display: 'block'}}>EPM</button>
+            <button style = {{display: 'block'}}>LL</button>
+
+
         </div>
 
     <div className='control-pane'>
