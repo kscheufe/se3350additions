@@ -22,6 +22,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
 		localStorage.removeItem("user");
+    window.location.reload();
 	};
   let user = false;
   let isAdmin;

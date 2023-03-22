@@ -18,7 +18,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path = '*' exact element= {<Navigate replace to = '/'/>}/>
+      {!user && <Route path = '*' exact element= {<Navigate replace to = '/'/>}/>}
       {user && <Route path="outline-view" element={<OutlineView courses={courses}/>}>
           <Route path=":id" element={<DisplayEditor courses={courses} />} />
         </Route>}

@@ -1,3 +1,16 @@
 .editor{
-    margin-left: 5vw;
+    display: flex;
+}
+
+.save-button{
+    margin-left:5vw
+}
+
+.btn1{
+    background-color: #b279e7;
+    align-items: flex-end;
+    max-height: 3vw;
+    border: none;
+    font-size: larger;
+    margin-left:3vw;
 }
