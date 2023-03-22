@@ -25,13 +25,22 @@ function Outline() {
         //titleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);
         onLoadDefault();
     }
-    return (<div className='control-pane'>
+    return (
+    <div>
+        <div style={{float: 'left'}}>
+            GA Indicators Assessment Window
+            
+        </div>
+
+    <div className='control-pane'>
         <div className='control-section'>
             {/* <div id='documenteditor_titlebar' className="e-de-ctn-title"></div> */}
             <div id="documenteditor_container_body">
                 <DocumentEditorContainerComponent id="container" ref={(scope) => { container = scope; }} style={{ 'display': 'flex','margin-left':'15vw' }} height={'790px'} width = {'70vw'} enableToolbar={true} locale='en-US'/>
             </div>
+           
         </div>
+    </div>
     </div>);
     function onLoadDefault() {
         // tslint:disable
