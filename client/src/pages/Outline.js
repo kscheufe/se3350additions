@@ -61,7 +61,8 @@ function Outline() {
 
     const handleButtonClick = () => {
         if(selectedOption != null){
-            alert(`Selected option: ${selectedOption}`);
+            setShowForm(true);
+
         }
     };
 
@@ -73,6 +74,8 @@ function Outline() {
       const handleFormSubmit = (event) => {
         event.preventDefault();
         console.log(formData);
+        alert(`GA Indicator Assessment for ${selectedOption} was submitted`);
+
         setShowForm(false);
         setSelectedOption('');
         setFormData({
@@ -90,7 +93,14 @@ function Outline() {
             GA Indicators Assessment Window
             <Dropdown options={options} onSelect={handleSelect} />
             <button onClick={handleButtonClick}>Get Selected Option</button>
-
+            {showForm && (
+                <PopupForm
+                formData={formData}
+                onChange={handleFormChange}
+                onSubmit={handleFormSubmit}
+                onClose={() => setShowForm(false)}
+                />
+            )}
         </div>
 
     <div className='control-pane'>
