@@ -1,8 +1,12 @@
 import '../index.css';
-import * as React from 'react';
+import React, { useState } from 'react';
 import { updateSampleSection } from '../components/sample-base';
 import { DocumentEditorContainerComponent, Toolbar } from '@syncfusion/ej2-react-documenteditor';
 //import { TitleBar } from '../components/title-bar';
+import Dropdown from '../components/Dropdown/Dropdown';
+import PopupForm from '../components/Dropdown/PopupForm';
+
+
 
 DocumentEditorContainerComponent.Inject(Toolbar);
 // tslint:disable:max-line-length
@@ -25,13 +29,89 @@ function Outline() {
         //titleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);
         onLoadDefault();
     }
-    return (<div className='control-pane'>
+
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const options = [
+        'KB',
+        'PA',
+        'D',
+        'ET',
+        'ITW',
+        'CS',
+        'PR',
+        'IESE',
+        'EE',
+        'EPM',
+        'LL'
+    ];
+
+    const [showForm, setShowForm] = useState(false);
+    const [formData, setFormData] = useState({
+        field1: '',
+        field2: '',
+        field3: '',
+        field4: '',
+    });
+
+    const handleSelect = (option) => {
+        setSelectedOption(option);
+        console.log(option)
+    };
+
+    const handleButtonClick = () => {
+        if(selectedOption != null){
+            setShowForm(true);
+
+        }
+    };
+
+    const handleFormChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+      };
+    
+      const handleFormSubmit = (event) => {
+        event.preventDefault();
+        console.log(formData);
+        alert(`GA Indicator Assessment for ${selectedOption} was submitted`);
+
+        setShowForm(false);
+        setSelectedOption('');
+        setFormData({
+          field1: '',
+          field2: '',
+          field3: '',
+          field4: '',
+        });
+      };
+    
+
+    return (
+    <div>
+        <div style={{float: 'left'}}>
+            GA Indicators Assessment Window
+            <Dropdown options={options} onSelect={handleSelect} />
+            <button onClick={handleButtonClick}>Get Selected Option</button>
+            {showForm && (
+                <PopupForm
+                formData={formData}
+                onChange={handleFormChange}
+                onSubmit={handleFormSubmit}
+                onClose={() => setShowForm(false)}
+                />
+            )}
+        </div>
+
+    <div className='control-pane'>
         <div className='control-section'>
             {/* <div id='documenteditor_titlebar' className="e-de-ctn-title"></div> */}
             <div id="documenteditor_container_body">
                 <DocumentEditorContainerComponent id="container" ref={(scope) => { container = scope; }} style={{ 'display': 'flex','margin-left':'15vw' }} height={'790px'} width = {'70vw'} enableToolbar={true} locale='en-US'/>
             </div>
+           
         </div>
+    </div>
     </div>);
     function onLoadDefault() {
         // tslint:disable
