@@ -1,5 +1,5 @@
 import '../index.css';
-import * as React from 'react';
+import React, { useState } from 'react';
 import { updateSampleSection } from '../components/sample-base';
 import { DocumentEditorContainerComponent, Toolbar } from '@syncfusion/ej2-react-documenteditor';
 //import { TitleBar } from '../components/title-bar';
@@ -28,37 +28,34 @@ function Outline() {
         onLoadDefault();
     }
 
-    const buttonStyle = {
-        display: 'block',
-        margin: "1em"
-    };
-
     const [selectedOption, setSelectedOption] = useState(null);
 
     const options = [
-        { label: 'kb1', value: 'kb1' },
-        { label: 'kb2', value: 'kb2' },
-        { label: 'kb3', value: 'kb3' },
-        { label: 'kb4', value: 'kb4' },
+        'KB',
+        'PA',
+        'D',
+        'ET',
+        'ITW',
+        'CS',
+        'PR',
+        'IESE',
+        'EE',
+        'EPM',
+        'LL'
     ];
 
     const handleSelect = (option) => {
         setSelectedOption(option);
+        console.log(option)
     };
+
+    
 
     return (
     <div>
         <div style={{float: 'left'}}>
             GA Indicators Assessment Window
-            <button style = {buttonStyle}>ET</button>
-            <button style = {buttonStyle}>ITW</button>
-            <button style = {buttonStyle}>CS</button>
-            <button style = {buttonStyle}>PR</button>
-            <button style = {buttonStyle}>IESE</button>
-            <button style = {buttonStyle}>EE</button>
-            <button style = {buttonStyle}>EPM</button>
-            <button style = {buttonStyle}>LL</button>
-
+            <Dropdown options={options} onSelect={handleSelect} />
 
         </div>
 
