@@ -3,6 +3,8 @@ import * as React from 'react';
 import { updateSampleSection } from '../components/sample-base';
 import { DocumentEditorContainerComponent, Toolbar } from '@syncfusion/ej2-react-documenteditor';
 //import { TitleBar } from '../components/title-bar';
+import Dropdown from '../components/Dropdown/Dropdown';
+
 
 DocumentEditorContainerComponent.Inject(Toolbar);
 // tslint:disable:max-line-length
@@ -25,18 +27,37 @@ function Outline() {
         //titleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);
         onLoadDefault();
     }
+
+    const buttonStyle = {
+        display: 'block',
+        margin: "1em"
+    };
+
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const options = [
+        { label: 'kb1', value: 'kb1' },
+        { label: 'kb2', value: 'kb2' },
+        { label: 'kb3', value: 'kb3' },
+        { label: 'kb4', value: 'kb4' },
+    ];
+
+    const handleSelect = (option) => {
+        setSelectedOption(option);
+    };
+
     return (
     <div>
         <div style={{float: 'left'}}>
             GA Indicators Assessment Window
-            <button style = {{display: 'block'}}>ET</button>
-            <button style = {{display: 'block'}}>ITW</button>
-            <button style = {{display: 'block'}}>CS</button>
-            <button style = {{display: 'block'}}>PR</button>
-            <button style = {{display: 'block'}}>IESE</button>
-            <button style = {{display: 'block'}}>EE</button>
-            <button style = {{display: 'block'}}>EPM</button>
-            <button style = {{display: 'block'}}>LL</button>
+            <button style = {buttonStyle}>ET</button>
+            <button style = {buttonStyle}>ITW</button>
+            <button style = {buttonStyle}>CS</button>
+            <button style = {buttonStyle}>PR</button>
+            <button style = {buttonStyle}>IESE</button>
+            <button style = {buttonStyle}>EE</button>
+            <button style = {buttonStyle}>EPM</button>
+            <button style = {buttonStyle}>LL</button>
 
 
         </div>
