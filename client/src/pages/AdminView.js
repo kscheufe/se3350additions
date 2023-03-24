@@ -1,20 +1,24 @@
-import "../styles/AdminView.css";
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar/Navbar";
+import "../styles/AdminView.css";
 
 const AdminView = () => {
   const [courses, setCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState({});
   const [instructors, setInstructors] = useState([]);
   const [selectedInstructor, setSelectedInstructor] = useState({});
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState("");
+  const [showCourseDescription, setShowCourseDescription] = useState(false);
+  const [courseDescription, setCourseDescription] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
-      const courseResponse = await fetch(process.env.REACT_APP_API_ADDRESS + "/api/courses");
+      const courseResponse = await fetch(`${process.env.REACT_APP_API_ADDRESS}/api/courses`);
       const courseData = await courseResponse.json();
       setCourses(courseData);
 
-      const instructorResponse = await fetch(process.env.REACT_APP_API_ADDRESS + "/api/getinstructors");
+      const instructorResponse = await fetch(`${process.env.REACT_APP_API_ADDRESS}/api/getinstructors`);
       const instructorData = await instructorResponse.json();
       setInstructors(instructorData);
     };
@@ -33,8 +37,6 @@ const AdminView = () => {
   };
 
   const assignCourseToInstructor = async () => {
-    console.log(selectedCourse.code);
-    console.log(selectedInstructor.id);
     if (selectedInstructor.id && selectedCourse.code) {
       const response = await fetch(`${process.env.REACT_APP_API_ADDRESS}/api/instructors/${selectedInstructor.id}`, {
         method: "POST",
@@ -44,67 +46,117 @@ const AdminView = () => {
         body: JSON.stringify({ course: selectedCourse.code }),
       });
       if (response.ok) {
-        alert("The course was assigned to the instructor successfully");
+        setNotificationMessage("The course was assigned to the instructor successfully");
+        setShowNotification(true);
+        setTimeout(() => {
+          setShowNotification(false);
+        }, 5000);
       } else {
         alert("An error occurred while assigning the course to the instructor");
       }
     }
   };
 
+  const closeNotification = () => {
+    setShowNotification(false);
+  };
+
+  const showCourseDescriptionPopup = (courseCode) => {
+    const course = courses.find((course) => course.code === courseCode);
+    if (course) {
+      setCourseDescription(course.description);
+      setShowCourseDescription(true);
+      setTimeout(() => {
+        setShowCourseDescription(false);
+      }, 5000);
+    }
+  };
+
+  const closeCourseDescription = () => {
+    setShowCourseDescription(false);
+  };
+
   return (
-    <div className="div-structure">
-      <div className="navbar-admin">
+    <div className="container">
+      <div className="header">
         <Navbar />
       </div>
-      <h1>Assign Courses to Instructor</h1>
-      <div className="div-selection">
-        <div className="instructor-selection">
-          <h2>Select an Instructor:</h2>
-          <select value={selectedInstructor.name} onChange={handleInstructorChange}>
-            {instructors.map((instructor) => (
-              <option key={instructor.name} value={instructor.name}>
-                {instructor.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="course-selection">
-          <h2>Select a Course:</h2>
-          <select value={selectedCourse.name} onChange={handleCourseChange}>
-            {courses.map((course) => (
-              <option key={course.name} value={course.name}>
-                {course.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        {/* </div> */}
-        {/* <div className="div-selection"> */}
-      </div>
-      <div className="information-structure">
-        <div className="information">
-          {selectedInstructor.name ? (
-            <div className="instructor-info">
-              <h2>Selected Instructor:</h2>
-              <p>ID: {selectedInstructor.id}</p>
-              <p>Name: {selectedInstructor.name}</p>
-              <p>Email: {selectedInstructor.email}</p>
-              <p>Assigned Courses: {selectedInstructor.assigned_courses}</p>
+      <div className="body">
+        <h1>Assign Courses to Instructor</h1>
+        <div className="form">
+          <div className="form-field">
+            <label>Select an Instructor:</label>
+            <select value={selectedInstructor.name} onChange={handleInstructorChange}>
+              <option value=""></option>
+              {instructors.map((instructor) => (
+                <option key={instructor.name} value={instructor.name}>
+                  {instructor.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="form-field">
+            <label>Select a Course:</label>
+            <select value={selectedCourse.name} onChange={handleCourseChange}>
+              <option value=""></option>
+              {courses.map((course) => (
+                <option key={course.name} value={course.name}>
+                  {course.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          {selectedInstructor.name && (
+            <div className="form-field">
+              <label>Selected Instructor:</label>
+              <div>ID: {selectedInstructor.id}</div>
+              <div>Name: {selectedInstructor.name}</div>
+              <div>Email: {selectedInstructor.email}</div>
+              <div>
+                Assigned Courses:{" "}
+                {selectedInstructor.assigned_courses &&
+                  selectedInstructor.assigned_courses.map((courseCode, index) => (
+                    <button className="course-button" key={courseCode} onClick={() => showCourseDescriptionPopup(courseCode)}>
+                      {courseCode}
+                      {index < selectedInstructor.assigned_courses.length - 1 && ", "}
+                    </button>
+                  ))}
+              </div>
             </div>
-          ) : null}
-          {selectedCourse.name ? (
-            <div className="course-info">
-              <h2>Selected Course:</h2>
-              <p>Code: {selectedCourse.code}</p>
-              <p>Name: {selectedCourse.name}</p>
-              <p>Description: {selectedCourse.description}</p>
+          )}
+          {selectedCourse.name && (
+            <div className="form-field">
+              <label>Selected Course:</label>
+              <div>Code:{selectedCourse.code}</div>
+              <div>Name: {selectedCourse.name}</div>
+              <div>Description: {selectedCourse.description}</div>
             </div>
-          ) : null}
+          )}
         </div>
       </div>
-      <br />
-      <br />
-      <button onClick={assignCourseToInstructor}>Assign Course to Instructor</button>
+      <button className="btn" onClick={assignCourseToInstructor}>
+        Assign Course to Instructor
+      </button>
+      {showNotification && (
+        <div className="notification">
+          <div className="notification-content">
+            <span className="close-notification" onClick={closeNotification}>
+              &times;
+            </span>
+            <div className="notification-text">{notificationMessage}</div>
+          </div>
+        </div>
+      )}
+      {showCourseDescription && (
+        <div className="notification">
+          <div className="notification-content">
+            <span className="close-notification" onClick={closeCourseDescription}>
+              &times;
+            </span>
+            <div className="notification-text">{courseDescription}</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
