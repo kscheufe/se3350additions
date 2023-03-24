@@ -4,6 +4,8 @@ import { updateSampleSection } from '../components/sample-base';
 import { DocumentEditorContainerComponent, Toolbar } from '@syncfusion/ej2-react-documenteditor';
 //import { TitleBar } from '../components/title-bar';
 import Dropdown from '../components/Dropdown/Dropdown';
+import PopupForm from '../components/Dropdown/PopupForm';
+
 
 
 DocumentEditorContainerComponent.Inject(Toolbar);
@@ -44,11 +46,42 @@ function Outline() {
         'LL'
     ];
 
+    const [showForm, setShowForm] = useState(false);
+    const [formData, setFormData] = useState({
+        field1: '',
+        field2: '',
+        field3: '',
+        field4: '',
+    });
+
     const handleSelect = (option) => {
         setSelectedOption(option);
         console.log(option)
     };
 
+    const handleButtonClick = () => {
+        if(selectedOption != null){
+            alert(`Selected option: ${selectedOption}`);
+        }
+    };
+
+    const handleFormChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+      };
+    
+      const handleFormSubmit = (event) => {
+        event.preventDefault();
+        console.log(formData);
+        setShowForm(false);
+        setSelectedOption('');
+        setFormData({
+          field1: '',
+          field2: '',
+          field3: '',
+          field4: '',
+        });
+      };
     
 
     return (
@@ -56,6 +89,7 @@ function Outline() {
         <div style={{float: 'left'}}>
             GA Indicators Assessment Window
             <Dropdown options={options} onSelect={handleSelect} />
+            <button onClick={handleButtonClick}>Get Selected Option</button>
 
         </div>
 
