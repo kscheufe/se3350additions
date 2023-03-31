@@ -6,6 +6,8 @@ import { DocumentEditorContainerComponent, Toolbar } from '@syncfusion/ej2-react
 import Dropdown from '../components/Dropdown/Dropdown';
 import PopupForm from '../components/Dropdown/PopupForm';
 
+import { useParams } from "react-router-dom";
+
 
 
 DocumentEditorContainerComponent.Inject(Toolbar);
@@ -32,10 +34,9 @@ function Outline() {
 
     const user = localStorage.getItem('user')
 
-
+    let params = useParams();
 
     const [selectedOption, setSelectedOption] = useState(null);
-
     const options = [
         'KB',
         'PA',
@@ -57,7 +58,8 @@ function Outline() {
         attribute_3: '',
         attribute_4: '',
         ga_indicator: '',
-        id: user.id,
+        course: params.id,
+        id: JSON.parse(user)[0].id,
     });
 
     const handleSelect = (option) => {
@@ -89,10 +91,10 @@ function Outline() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ formData }),
+                body: JSON.stringify(formData),
                 });
         
-                console.log(JSON.stringify({ formData }))
+                console.log(JSON.stringify(formData))
                 if (response.ok) {
                     alert(`GA Indicator Assessment for ${selectedOption} was submitted`);
                 } else {
@@ -110,7 +112,8 @@ function Outline() {
           attribute_3: '',
           attribute_4: '',
           ga_indicator: '',
-          id: user.id,
+          course: params.id,
+          id: JSON.parse(user)[0].id,
         });
       };
     
