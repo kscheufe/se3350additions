@@ -16,6 +16,7 @@ function Outline() {
     React.useEffect(() => {
         updateSampleSection();
         rendereComplete();
+        EnforceProtection();
     }, []);
     let hostUrl = 'https://ej2services.syncfusion.com/production/web-services/';
     let container;
@@ -28,13 +29,48 @@ function Outline() {
         container.documentEditor.pageOutline = '#E0E0E0';
         container.documentEditor.acceptTab = true;
         container.documentEditor.resize();
+        container.documentEditor.currentUser = JSON.parse(user)[0].email;
+
+        
         //titleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);
+
         onLoadDefault();
     }
+    
+    
 
+
+   
     const user = localStorage.getItem('user')
-
+    
     let params = useParams();
+
+    function EnforceProtection() {
+        //enforce protection
+        if(JSON.parse(user)[0].id < 10){
+            container.documentEditor.editor.enforceProtection('123', 'RevisionsOnly');
+            console.log("enforced")
+        } else {
+            StopProtection()
+        }
+        
+        
+    }
+    function StopProtection() {
+        //stop the document protection
+        container.documentEditor.editor.stopProtection('123');
+    }
+
+    const [clicked, setClicked] = useState(false);
+
+        const confirmationWindow = () => {
+            if(!clicked){
+                EnforceProtection();
+                alert('All activities done on a course outline are tracked. All changes must be approved before the course outline can be used.');
+            }
+            setClicked(true);
+            
+        };  
 
     const [selectedOption, setSelectedOption] = useState(null);
     const options = [
@@ -137,7 +173,7 @@ function Outline() {
     <div className='control-pane'>
         <div className='control-section'>
             {/* <div id='documenteditor_titlebar' className="e-de-ctn-title"></div> */}
-            <div id="documenteditor_container_body">
+            <div id="documenteditor_container_body" onClick={confirmationWindow}>
                 <DocumentEditorContainerComponent id="container" ref={(scope) => { container = scope; }} style={{ 'display': 'flex','margin-left':'15vw' }} height={'790px'} width = {'70vw'} enableToolbar={true} locale='en-US'/>
             </div>
            
