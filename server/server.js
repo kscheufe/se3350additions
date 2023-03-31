@@ -31,6 +31,7 @@ app.use("/api/changelog", require("./routes/changelog"));
 app.use("/api/courses", require("./routes/getCourses"));
 app.use("/api/getinstructors", require("./routes/getInstructors"));
 app.use("/api/review", require("./routes/review"));
+app.use("/api/gaindicator", require("./routes/graduateAttributes"));
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening on port ${port}`));
