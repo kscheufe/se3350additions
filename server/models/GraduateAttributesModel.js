@@ -1,7 +1,13 @@
 const mongoose = require('mongoose');
 
-const changelogSchema = new mongoose.Schema({
-    user_id: {
+const GraduateAttributesSchema = new mongoose.Schema({
+    id: {
+        type: Number,
+    },
+    course: {
+        type: String,
+    },
+    indicator: {
         type: String,
     },
     attribute_1: {
@@ -20,4 +26,4 @@ const changelogSchema = new mongoose.Schema({
         type: Date
     }
 })
-module.exports = mongoose.model('Changelog', changelogSchema);
+module.exports = mongoose.model('GAIndicator', GraduateAttributesSchema);

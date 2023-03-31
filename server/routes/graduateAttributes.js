@@ -4,39 +4,34 @@ const GAIndicator = require("../models/GraduateAttributesModel.js"); // Importin
 
 // Function to add and remove courses to/from an instructor
 const GraduateAttributes = async (req, res) => {
-  // Get instructor ID from the request parameters
-  const instructorId = parseInt(req.params.id);
-  console.log(instructorId);
+  // Get arguments from the request body
 
   try {
-    // Find the instructor with the given ID in the database
-    const instructor = await GAIndicator.findOne({ id: instructorId });
-
-    if (!instructor) {
-      // If instructor is not found, send a 400 error response
-      return res.status(400).send({ error: `Instructor with ID ${instructorId} not found` });
-    }
-
-    // If the course is already assigned to the instructor, remove the course from the instructor's assigned courses
-    if (instructor.assigned_courses.includes(req.body.course)) {
-      const updatedUser = await User.findOneAndUpdate({ id: instructorId }, { $pull: { assigned_courses: req.body.course } }, { new: true });
-
-      return res.send(updatedUser); // Send the updated user object as a response
-    }
-
-    // If the course is not assigned to the instructor, add the course to the instructor's assigned courses
-    const updatedUser = await User.findOneAndUpdate({ id: instructorId }, { $push: { assigned_courses: req.body.course } }, { new: true });
-
-    return res.send(updatedUser); // Send the updated user object as a response
-  } catch (error) {
-    // If there's an error while updating the user, send a 500 error response
-    console.log("Error updating user:", error);
-    return res.status(500).send({ error: "Error updating user" });
+    const { id, course, indicator, attribute_1, attribute_2, attribute_3, attribute_4 } = req.body;
+    const timestamp = new Date();
+    
+    const newGAIndicator = new GAIndicator({
+      id,
+      course,
+      indicator,
+      attribute_1,
+      attribute_2,
+      attribute_3,
+      attribute_4,
+      timestamp
+    });
+    
+    await newGAIndicator.save();
+    
+    res.status(201).json(newGAIndicator);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 };
 
 // POST route to submit graduate attributes
-router.route("/:id").post(GraduateAttributes);
+router.route("/").post(GraduateAttributes);
 
 // Exporting the router object for use in other files
 module.exports = router;
