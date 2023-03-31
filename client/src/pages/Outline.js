@@ -30,6 +30,10 @@ function Outline() {
         onLoadDefault();
     }
 
+    const user = localStorage.getItem('user')
+
+
+
     const [selectedOption, setSelectedOption] = useState(null);
 
     const options = [
@@ -48,10 +52,12 @@ function Outline() {
 
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState({
-        field1: '',
-        field2: '',
-        field3: '',
-        field4: '',
+        attribute_1: '',
+        attribute_2: '',
+        attribute_3: '',
+        attribute_4: '',
+        ga_indicator: '',
+        id: user.id,
     });
 
     const handleSelect = (option) => {
@@ -62,7 +68,10 @@ function Outline() {
     const handleButtonClick = () => {
         if(selectedOption != null){
             setShowForm(true);
-
+            setFormData({
+                ...formData,
+                ga_indicator: selectedOption
+              });
         }
     };
 
@@ -71,18 +80,37 @@ function Outline() {
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
       };
     
-      const handleFormSubmit = (event) => {
+      const handleFormSubmit = async (event) => {
         event.preventDefault();
         console.log(formData);
-        alert(`GA Indicator Assessment for ${selectedOption} was submitted`);
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_ADDRESS}/api/gaindicator/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ formData }),
+                });
+        
+                console.log(JSON.stringify({ formData }))
+                if (response.ok) {
+                    alert(`GA Indicator Assessment for ${selectedOption} was submitted`);
+                } else {
+                    alert("An error occurred while submitting");
+                }
+        } catch (error) {
+            console.log(error)
+        }
 
         setShowForm(false);
         setSelectedOption('');
         setFormData({
-          field1: '',
-          field2: '',
-          field3: '',
-          field4: '',
+          attribute_1: '',
+          attribute_2: '',
+          attribute_3: '',
+          attribute_4: '',
+          ga_indicator: '',
+          id: user.id,
         });
       };
     
