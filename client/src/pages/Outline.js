@@ -29,6 +29,8 @@ function Outline() {
         container.documentEditor.pageOutline = '#E0E0E0';
         container.documentEditor.acceptTab = true;
         container.documentEditor.resize();
+        container.documentEditor.currentUser = JSON.parse(user)[0].email;
+
         
         //titleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);
 
