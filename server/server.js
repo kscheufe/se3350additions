@@ -3,16 +3,14 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
+const path = require("path");
 
 // built-in middleware for json
 app.use(express.json());
 const cors = require("cors");
+app.use(express.static(path.join(__dirname, '/uploads')));
 
-app.use(
-  cors(/* {
-    origin: ["http://localhost:3000", "https://se3350-team-25.nn.r.appspot.com"],
-  } */)
-);
+app.use(cors());
 
 mongoose.connect("mongodb+srv://team25:3350@outline-manager.cxc38sw.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true });
 const db = mongoose.connection;

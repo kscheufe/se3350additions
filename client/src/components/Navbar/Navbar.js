@@ -82,6 +82,12 @@ export default function Navbar() {
                     <span>Assign Courses</span>
                   </Link>
                 </li>}
+                {instructor && <li className="nav-text">
+                  <Link to='/pdf'>
+                    <TbIcons.TbBookUpload/>
+                    <span>View Previous Outlines</span>
+                  </Link>
+                </li>}
 
                 {allUser && <li className="nav-text" onClick={handleLogout}>
                   <Link to='/'>
