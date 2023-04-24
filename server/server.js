@@ -6,7 +6,9 @@ mongoose.set("strictQuery", false);
 const path = require("path");
 
 // built-in middleware for json
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
+
 const cors = require("cors");
 app.use(express.static(path.join(__dirname, '/uploads')));
 
@@ -32,6 +34,7 @@ app.use("/api/courses", require("./routes/getCourses"));
 app.use("/api/getinstructors", require("./routes/getInstructors"));
 app.use("/api/review", require("./routes/review"));
 app.use("/api/gaindicator", require("./routes/graduateAttributes"));
+app.use("/api/outline", require("./routes/postOutline"));
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening on port ${port}`));
