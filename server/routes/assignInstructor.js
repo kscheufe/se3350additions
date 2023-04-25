@@ -6,7 +6,7 @@ const User = require("../models/User.js"); // Importing User model
 const assignInstructor = async (req, res) => {
   // Get instructor ID from the request parameters
   const instructorId = parseInt(req.params.id);
-  console.log(instructorId);
+  console.log("assignInstructor.js - instructorID: " + instructorId);
 
   try {
     // Find the instructor with the given ID in the database
@@ -25,7 +25,7 @@ const assignInstructor = async (req, res) => {
     }
 
     // If the course is not assigned to the instructor, add the course to the instructor's assigned courses
-    const updatedUser = await User.findOneAndUpdate({ id: instructorId }, { $push: { assigned_courses: req.body.course } }, { new: true });
+      const updatedUser = await User.findOneAndUpdate({ id: instructorId }, { $push: { assigned_courses: req.body.course } }, { new: true });
 
     return res.send(updatedUser); // Send the updated user object as a response
   } catch (error) {

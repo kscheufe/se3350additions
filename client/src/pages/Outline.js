@@ -155,12 +155,13 @@ function Outline() {
         });
       };
 
+      //called when submit document is pressed on client
       const save = async (event) => {
         event.preventDefault();
         //Serialize document content as SFDT.
         let sfdt = { content: container.documentEditor.serialize() };
 
-
+//*********************** put a very similar code block into new portion of admin page, but with method: GET
         try {
             //sends sfdt to server, need to save it on server and prompt admin to view it
             const response = await fetch(`${process.env.REACT_APP_API_ADDRESS}/api/outline/${params.id}`, {
@@ -174,9 +175,11 @@ function Outline() {
                 console.log(JSON.stringify(sfdt))
                 if (response.ok) {
                     alert(`The course outline was submitted for review`);
-                } else {
+                } 
+                else {
                     alert("An error occurred while submitting");
                 }
+                //maybe disable button after submitting?
         } catch (error) {
             console.log(error)
         }

@@ -38,6 +38,9 @@ const AdminView = () => {
 
   const assignCourseToInstructor = async () => {
     if (selectedInstructor.id && selectedCourse.code) {
+      //fetch the response to assigning course FROM routes/assignInstructor
+      //this is client side script
+      //assignInstructor is serverside script
       const response = await fetch(`${process.env.REACT_APP_API_ADDRESS}/api/instructors/${selectedInstructor.id}`, {
         method: "POST",
         headers: {

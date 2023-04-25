@@ -11,7 +11,7 @@ const outlineSchema = new mongoose.Schema({
         type: Date
     }, 
     status: {
-        type: Boolean
+        type: String
     }
 });
 module.exports = mongoose.model('Outline', outlineSchema);

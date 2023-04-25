@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 const path = require("path");
 
-// built-in middleware for json
+// built-in middleware for json, set to allow sfdt sending through http
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
 

@@ -2,27 +2,28 @@ const express = require("express"); // Importing express module
 const router = express.Router(); // Creating router object
 const Outline = require("../models/OutlineModel.js"); // Importing GAIndicator model
 
-
 // Function to submit proposed outlines
 const postOutline = async (req, res) => {
   // Get arguments from the request body
 
-
+  //const courseNum = parseInt(req.params.course.tostring().substring())
+ 
   try {
     const { content } = req.body;
-    const course = req.params.course;
+    const courseID = req.params.course;;
+    //console.log(courseNum);
     const timestamp = new Date();
-    const status = '';/////////////////
+    const status = 'submitted';/////////////////
 
     const newOutline = new Outline({
-      course,
+      courseID,
       content,
       timestamp,
-      //status
+      status
     });
 
 
-    await newOutline.save();
+    await newOutline.save();//save the new outline in the db
 
 
     res.status(201).json(newOutline);
@@ -33,7 +34,7 @@ const postOutline = async (req, res) => {
 };
 
 
-// POST route to submit proposed course outline
+// POST route to submit proposed course outline to database
 router.route("/:course").post(postOutline);
 
 
