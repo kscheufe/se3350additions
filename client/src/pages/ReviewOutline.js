@@ -4,6 +4,7 @@ import "../styles/AdminView.css";//poor practice but for the purpose of showing 
 import { updateSampleSection } from '../components/sample-base';
 import { DocumentEditorContainerComponent, Toolbar, WordExport, SfdtExport } from '@syncfusion/ej2-react-documenteditor';
 import {useParams} from "react-router-dom";
+import defaultOutline from "./defaultOutline.json";
 
 //maybe also inject Toolbar?, 
 DocumentEditorContainerComponent.Inject(WordExport, SfdtExport);
@@ -14,7 +15,7 @@ function AdminReview() {
     const [selectedCourse, setSelectedCourse] = useState({});//selection of course
     const [showCourseDescription, setShowCourseDescription] = useState(false);//toggle 
     const [courseDescription, setCourseDescription] = useState("");//description
-
+    const [clicked, setClicked] = useState(false);
         
     //array for all submissions from one class
     const [outlines, setOutlines] = useState([]);//array of outlines
@@ -22,6 +23,7 @@ function AdminReview() {
     const [outlineSelection, setOutlineSelection] = useState({});//selection of outline
 
       useEffect(() => {
+        updateSampleSection();
         const fetchData = async () => {
           const courseResponse = await fetch(`${process.env.REACT_APP_API_ADDRESS}/api/courses`);//routes to ./routes/getCourses
           const courseData = await courseResponse.json();
@@ -47,6 +49,66 @@ function AdminReview() {
         const outlineSelection = outlines.find((outline) => outline.course === event.target.value);
         setOutlineSelection(outlineSelection || {});
       };
+
+      let hostUrl = 'https://ej2services.syncfusion.com/production/web-services/';
+      let container;
+
+      function rendereComplete() {
+        window.onbeforeunload = function () {
+            return 'Want to save your changes?';
+        };
+        container.serviceUrl = hostUrl + 'api/documenteditor/';
+        container.documentEditor.pageOutline = '#E0E0E0';
+        container.documentEditor.acceptTab = true;
+        container.documentEditor.resize();
+        container.documentEditor.currentUser = JSON.parse(user)[0].email;
+
+        
+        //titleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);
+
+        onLoadDefault();
+    }      
+
+    function onLoadDefault() {
+        // tslint:disable
+        let defaultDocument = JSON.parse(defaultOutline);
+        
+        // tslint:enable        
+        container.documentEditor.open(JSON.stringify(defaultDocument));
+        container.documentEditor.documentName = 'Course Outline Template';
+        //titleBar.updateDocumentTitle();
+        container.documentChange = () => {
+            //titleBar.updateDocumentTitle();
+            container.documentEditor.focusIn();
+        };
+    }
+
+      const confirmationWindow = () => {
+          if(!clicked){
+              EnforceProtection();
+              alert('All activities done on a course outline are tracked. All changes must be approved before the course outline can be used.');
+          }
+          setClicked(true);
+          
+      }; 
+      
+      const user = localStorage.getItem('user');
+      
+      function EnforceProtection() {
+        //enforce protection
+        if(JSON.parse(user)[0].id < 10){
+            container.documentEditor.editor.enforceProtection('123', 'RevisionsOnly');
+            console.log("enforced")
+        } else {
+            StopProtection()
+        }
+        
+        
+    }
+    function StopProtection() {
+        //stop the document protection
+        container.documentEditor.editor.stopProtection('123');
+    }
 
     return (
         //select which courses outline to review
@@ -95,9 +157,17 @@ function AdminReview() {
                     <div>Description: {selectedCourse.description}</div>
                 </div>
                 )}
-                
+                <div className='control-pane'>
+                    <div className='control-section'>
+                        {/* <div id='documenteditor_titlebar' className="e-de-ctn-title"></div> */}
+                        <div id="documenteditor_container_body" onClick={confirmationWindow}>
+                            <DocumentEditorContainerComponent id="container" ref={(scope) => { container = scope; }} style={{ 'display': 'flex','margin-left':'15vw' }} height={'790px'} width = {'70vw'} enableToolbar={true} locale='en-US'/>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
     )//select where status = submitted and course = selected course
 }
 
