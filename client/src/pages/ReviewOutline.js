@@ -24,6 +24,7 @@ function AdminReview() {
 
       useEffect(() => {
         updateSampleSection();
+        rendereComplete();
         const fetchData = async () => {
           const courseResponse = await fetch(`${process.env.REACT_APP_API_ADDRESS}/api/courses`);//routes to ./routes/getCourses
           const courseData = await courseResponse.json();
@@ -153,7 +154,6 @@ function AdminReview() {
                 <div className="form-field">
                     <label>Selected Outline:</label>
                     <div>Course:{outlineSelection.course}</div>
-                    
                     <div>Description: {selectedCourse.description}</div>
                 </div>
                 )}
@@ -161,7 +161,7 @@ function AdminReview() {
                     <div className='control-section'>
                         {/* <div id='documenteditor_titlebar' className="e-de-ctn-title"></div> */}
                         <div id="documenteditor_container_body" onClick={confirmationWindow}>
-                            <DocumentEditorContainerComponent id="container" ref={(scope) => { container = scope; }} style={{ 'display': 'flex','margin-left':'15vw' }} height={'790px'} width = {'70vw'} enableToolbar={true} locale='en-US'/>
+                            <DocumentEditorContainerComponent id="container" ref={(scope) => { container = scope; }} style={{ 'display': 'flex','margin-left':'15vw' }} height={'790px'} width = {'70vw'} enableToolbar={false} locale='en-US'/>
                         </div>
                     </div>
                 </div>
