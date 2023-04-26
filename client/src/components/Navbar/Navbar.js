@@ -82,6 +82,12 @@ export default function Navbar() {
                     <span>Assign Courses</span>
                   </Link>
                 </li>}
+                {isAdmin && <li className="nav-text">
+                  <Link to='/admin-outline-review'>
+                    <TbIcons.TbBookUpload/>
+                    <span>Review Outline Submissions</span>
+                  </Link>
+                </li>}
                 {instructor && <li className="nav-text">
                   <Link to='/pdf'>
                     <TbIcons.TbBookUpload/>

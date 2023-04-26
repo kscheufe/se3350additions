@@ -3,6 +3,7 @@ const router = express.Router(); // Creating router object
 const Outline = require("../models/OutlineModel.js"); // Importing GAIndicator model
 
 //function to get list of proposed outlines, called from 
+/*
 const getOutlines = async (req, res) => {
     console.log(req.params.name);//log the parameters, I want to be able to
     //find the outline for a spceific course as specified in app
@@ -16,7 +17,7 @@ const getOutlines = async (req, res) => {
             //display document for reviewal
             //return the document file
 
-            return res.send(outline)
+            return res.send(outline);
         }
         else if (outline.status == "accepted")
         {
@@ -38,6 +39,33 @@ const getOutlines = async (req, res) => {
 
 //get route to grab the course outline for a specified course
 router.route("/:name").get(getOutlines);
+*/
+
+//*
+// Controller function to get outlines. I'm thinking this will likely get all the outlines in the system
+const getOutlines = (req, res) => {
+    // Finding all outlines
+    Outline.find((err, outlines) => {
+      if (err) {
+        // If there's an error, return a 500 error response
+        return res.status(500).json({ error: "Error getting outlines from database" });
+      }
+      // If successful, return the courses as a JSON response
+      console.log("searched for outlines - getOutline.js, this does work and sends the whole sfdt document")
+      console.log(outlines);
+      return res.json(outlines);
+    });
+  };
+  
+  // Setting the route for getting courses
+  router.route("/").get(getOutlines);
+  
+//*/  
+
 
 //export the router to use in other files
 module.exports = router;
+
+
+
+

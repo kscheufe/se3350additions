@@ -154,16 +154,15 @@ function Outline() {
           id: JSON.parse(user)[0].id,
         });
       };
-
       //called when submit document is pressed on client
       const save = async (event) => {
         event.preventDefault();
         //Serialize document content as SFDT.
         let sfdt = { content: container.documentEditor.serialize() };
 
-//*********************** put a very similar code block into new portion of admin page, but with method: GET
+//********************** put a very similar code block into new portion of admin page, but with method: GET
         try {
-            //sends sfdt to server, need to save it on server and prompt admin to view it
+            //sends sfdt to server, need to prompt admin to view it
             const response = await fetch(`${process.env.REACT_APP_API_ADDRESS}/api/outline/${params.id}`, {
                 method: "POST",
                 headers: {

@@ -6,6 +6,7 @@ import AdminView from "./pages/AdminView";
 import Login from "./pages/Login";
 import Outline from "./pages/Outline";
 import PDFViewer from "./pages/PDFViewer";
+import ReviewOutline from "./pages/ReviewOutline";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path=":id" element={<DisplayEditor courses={courses} />} />
         </Route>}
       {user && <Route path="/admin-view" element={<AdminView />} />}
+      {user && <Route path="/admin-outline-review" element={<ReviewOutline />} />}
       {user && <Route path="/pdf" element={<PDFViewer/>} />}
       {user && <Route path="/outline-editor" exact element={<Outline />} />}
       {!user && <Route path="/login" exact element={<Login />} />}

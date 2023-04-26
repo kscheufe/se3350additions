@@ -35,6 +35,7 @@ app.use("/api/getinstructors", require("./routes/getInstructors"));
 app.use("/api/review", require("./routes/review"));
 app.use("/api/gaindicator", require("./routes/graduateAttributes"));
 app.use("/api/outline", require("./routes/postOutline"));
+app.use("/api/getOutline", require("./routes/getOutline"));
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening on port ${port}`));

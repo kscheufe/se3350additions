@@ -3,14 +3,16 @@ import Navbar from "../components/Navbar/Navbar";
 import "../styles/AdminView.css";
 
 const AdminView = () => {
-  const [courses, setCourses] = useState([]);
-  const [selectedCourse, setSelectedCourse] = useState({});
-  const [instructors, setInstructors] = useState([]);
+  const [courses, setCourses] = useState([]);//array of courses
+  const [selectedCourse, setSelectedCourse] = useState({});//selection of course
+  const [instructors, setInstructors] = useState([]);//array of instructors
   const [selectedInstructor, setSelectedInstructor] = useState({});
-  const [showNotification, setShowNotification] = useState(false);
-  const [notificationMessage, setNotificationMessage] = useState("");
+  const [showNotification, setShowNotification] = useState(false);//toggle
+  const [notificationMessage, setNotificationMessage] = useState("");//description
   const [showCourseDescription, setShowCourseDescription] = useState(false);
   const [courseDescription, setCourseDescription] = useState("");
+  
+
 
   useEffect(() => {
     const fetchData = async () => {
