@@ -18,7 +18,7 @@ function Outline() {
     React.useEffect(() => {
         updateSampleSection();
         rendereComplete();
-        ///EnforceProtection();
+        //EnforceProtection();
     }, []);
     let hostUrl = 'https://ej2services.syncfusion.com/production/web-services/';
     let container;
@@ -171,7 +171,7 @@ function Outline() {
                 body: JSON.stringify(sfdt),
                 });
 
-                console.log(JSON.stringify(sfdt))
+                console.log("Outline.js" + JSON.stringify(sfdt))
                 if (response.ok) {
                     alert(`The course outline was submitted for review`);
                 } 

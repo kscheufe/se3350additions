@@ -51,8 +51,8 @@ const getOutlines = (req, res) => {
         return res.status(500).json({ error: "Error getting outlines from database" });
       }
       // If successful, return the courses as a JSON response
-      console.log("searched for outlines - getOutline.js, this does work and sends the whole sfdt document")
-      console.log(outlines);
+      //console.log("searched for outlines - getOutline.js, this does work and sends the whole sfdt document")
+      //console.log(outlines[outlines.length-1]);
       return res.json(outlines);
     });
   };

@@ -13,8 +13,8 @@ function AdminReview() {
     console.log("hello from reviewOUtline.js")
     const [courses, setCourses] = useState([]);//array of courses
     const [selectedCourse, setSelectedCourse] = useState({});//selection of course
-    const [showCourseDescription, setShowCourseDescription] = useState(false);//toggle 
-    const [courseDescription, setCourseDescription] = useState("");//description
+    //const [showCourseDescription, setShowCourseDescription] = useState(false);//toggle 
+    //const [courseDescription, setCourseDescription] = useState("");//description
     const [clicked, setClicked] = useState(false);
         
     //array for all submissions from one class
@@ -28,7 +28,7 @@ function AdminReview() {
         const fetchData = async () => {
           const courseResponse = await fetch(`${process.env.REACT_APP_API_ADDRESS}/api/courses`);//routes to ./routes/getCourses
           const courseData = await courseResponse.json();
-          setCourses(courseData);
+          setCourses(courseData);//not used yet
             
           //get all outlines
           const outlineResponse = await fetch(`${process.env.REACT_APP_API_ADDRESS}/api/getOutline`);//route in server.js
@@ -45,16 +45,32 @@ function AdminReview() {
         setSelectedCourse(selectedCourse || {});
       };
 
-      //handle a change in outline
+      let currentOutline;
+
+      //handle a change in outline selection
       const handleOutlineChange = (event) => {
-        const outlineSelection = outlines.find((outline) => outline.course === event.target.value);
+        console.log(event.target.value);
+        //console.log(event.target);
+        const outlineSelection = outlines.find((outline) => outline._id === event.target.value);
+        currentOutline = outlineSelection;
         setOutlineSelection(outlineSelection || {});
+        console.log(currentOutline);
+        
+        
+        container.documentEditor.open(currentOutline.content/**JSON.stringify(outline)*/);
+        container.documentEditor.documentName = currentOutline.course + ' Outline';
+        container.documentChange = () => {
+            //titleBar.updateDocumentTitle();
+            container.documentEditor.focusIn();
+        };
+        updateSampleSection();
+        //rendereComplete();//this will also be slightly wrong as it will reload the default doc
       };
+      
+    let hostUrl = 'https://ej2services.syncfusion.com/production/web-services/';
+    let container;
 
-      let hostUrl = 'https://ej2services.syncfusion.com/production/web-services/';
-      let container;
-
-      function rendereComplete() {
+    function rendereComplete() {
         window.onbeforeunload = function () {
             return 'Want to save your changes?';
         };
@@ -66,21 +82,33 @@ function AdminReview() {
 
         
         //titleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);
-
+        //loadDocument();
         onLoadDefault();
     }      
+
+    function loadDocument(idValue) {
+        
+        //console.log("here");
+        //tslint:disable
+        //console.log("currentOutline:" + currOutline);
+        let outline = JSON.parse(currentOutline.content);//
+        const outlineSelection = outlines.find((outline) => outline._id === idValue);
+        console.log("outlineSelec" + outlineSelection);
+
+        // tslint:enable
+        
+        }
 
     function onLoadDefault() {
         // tslint:disable
         let defaultDocument = JSON.parse(defaultOutline);
-        
         // tslint:enable        
         container.documentEditor.open(JSON.stringify(defaultDocument));
         container.documentEditor.documentName = 'Course Outline Template';
         //titleBar.updateDocumentTitle();
         container.documentChange = () => {
             //titleBar.updateDocumentTitle();
-            container.documentEditor.focusIn();
+            //container.documentEditor.focusIn();
         };
     }
 
@@ -120,7 +148,42 @@ function AdminReview() {
             </div>
             <div className="body">
                 <h1>Review Outline Submissions</h1>
+                
                 <div className="form-field">
+                    <label>Select an Outline:</label>
+                    <select value={outlineSelection._id} onChange={handleOutlineChange}>
+                        <option value=""></option>
+                        {outlines.map((outline) => (
+                            <option key={outline._id} value={outline._id/*outline.course*/}>
+                            {"Course: " + outline.course +"-Status: " + outline.status+" -Timestamp: "+ outline.timestamp + " -courseID: " + outline._id}
+                        </option>
+                        ))}
+                    </select>
+                </div>
+                {outlineSelection.name && (
+                <div className="form-field">
+                    <label>Selected Outline:</label>
+                    <div>Course:{outlineSelection.name}</div>
+                    
+                </div>
+                )}
+                <div className='control-pane'>
+                    <div className='control-section'>
+                        {/* <div id='documenteditor_titlebar' className="e-de-ctn-title"></div> */}
+                        <div id="documenteditor_container_body" onClick={confirmationWindow}>
+                            <DocumentEditorContainerComponent id="container" ref={(scope) => { container = scope; }} style={{ 'display': 'flex','margin-left':'15vw' }} height={'790px'} width = {'70vw'} enableToolbar={false} locale='en-US'/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    )//select where status = submitted and course = selected course
+}
+
+/** for optional reduction of outlines by course
+ * 
+ * <div className="form-field">
                     <label>Select a Course:</label>
                     <select value={selectedCourse.name} onChange={handleCourseChange}>
                         <option value=""></option>
@@ -139,36 +202,8 @@ function AdminReview() {
                     <div>Description: {selectedCourse.description}</div>
                 </div>
                 )}
-                <div className="form-field">
-                    <label>Select an Outline:</label>
-                    <select value={outlineSelection.name} onChange={handleOutlineChange}>
-                        <option value=""></option>
-                        {outlines.map((outline) => (
-                            <option key={outline.id} value={"val" + selectedCourse.name/*outline.course*/}>
-                            {"btm" + outline.course}
-                        </option>
-                        ))}
-                    </select>
-                </div>
-                {outlineSelection.name && (
-                <div className="form-field">
-                    <label>Selected Outline:</label>
-                    <div>Course:{outlineSelection.course}</div>
-                    <div>Description: {selectedCourse.description}</div>
-                </div>
-                )}
-                <div className='control-pane'>
-                    <div className='control-section'>
-                        {/* <div id='documenteditor_titlebar' className="e-de-ctn-title"></div> */}
-                        <div id="documenteditor_container_body" onClick={confirmationWindow}>
-                            <DocumentEditorContainerComponent id="container" ref={(scope) => { container = scope; }} style={{ 'display': 'flex','margin-left':'15vw' }} height={'790px'} width = {'70vw'} enableToolbar={false} locale='en-US'/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+ * 
+ */
 
-    )//select where status = submitted and course = selected course
-}
 
 export default AdminReview;

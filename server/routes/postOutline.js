@@ -10,18 +10,17 @@ const postOutline = async (req, res) => {
  
   try {
     const { content } = req.body;
-    const courseID = req.params.course;;
-    //console.log(courseNum);
+    const course = req.params.course;;
+    //console.log(courseID); //working fine here
     const timestamp = new Date();
-    const status = 'submitted';/////////////////
+    const status = 'submitted';
 
     const newOutline = new Outline({
-      courseID,
+      course,
       content,
       timestamp,
       status
     });
-
 
     await newOutline.save();//save the new outline in the db
 
