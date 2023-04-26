@@ -139,9 +139,24 @@ function AdminReview() {
         container.documentEditor.editor.stopProtection('123');
     }
 
+    function acceptOutline()
+    {
+        //set status of outline to accepted
+        //open a pdf window
+
+    }
+
+    function returnOutline()
+    {
+        //set status of outline to rejected
+        //update database with new "outline" containing accepted and rejected modifications
+        //implement instructor side viewing of "returned"/"rejected" outlines and further modifying them
+    }
+
     return (
         //select which courses outline to review
         //show the outline submission for that course
+        //only show outlines with status == "submitted"
         <div className = "container">
             <div className = "header">
                 <Navbar />
@@ -167,6 +182,12 @@ function AdminReview() {
                     
                 </div>
                 )}
+                <div>
+                    <button onClick={returnOutline}>Return Updated Doc</button>
+                </div>
+                <div>
+                    <button onClick={acceptOutline}>Accept Outline</button>
+                </div>
                 <div className='control-pane'>
                     <div className='control-section'>
                         {/* <div id='documenteditor_titlebar' className="e-de-ctn-title"></div> */}
